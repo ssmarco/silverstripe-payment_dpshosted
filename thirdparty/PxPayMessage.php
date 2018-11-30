@@ -103,7 +103,7 @@ class PxPayMessage {
 			
 		$xml  = "<$root>";
     	while (list($prop, $val) = each($arr))
-        	$xml .= "<$prop>$val</$prop>" ;
+        	$xml .= "<$prop>".Convert::raw2xml($val)."</$prop>" ;
 
 		$xml .= "</$root>";
 		

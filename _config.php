@@ -11,8 +11,3 @@ if(Director::isLive()){
 	DPSHostedPayment::set_px_pay_key(<my_test_key>);
 }
 */
-
-Director::addRules(100, array(
-	'DPSHostedPayment/$Action/$ID' => 'DPSHostedPayment_Controller'
-));
-

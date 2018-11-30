@@ -1,16 +1,26 @@
 {
-	"name": "silverstripe/payment_dpshosted",
-	"description": "SilverStripe Payment Module (DPS hosted).",
-	"type": "silverstripe-module",
-	"keywords": ["silverstripe-labs", "payment_dpshosted", "payment"],
-	"authors": [
-	{
-		"name": "Normann Lou",
-		"email": "nlou@silverstripe.com"
-	}
-	],
-	"require":
-	{
-		"silverstripe/framework": "3.0.*"
-	}
+  "name": "silverstripe/payment_dpshosted",
+  "description": "SilverStripe Payment Module (DPS hosted).",
+  "type": "silverstripe-vendormodule",
+  "keywords": [
+    "silverstripe-labs",
+    "payment_dpshosted",
+    "payment"
+  ],
+  "authors": [
+    {
+      "name": "Normann Lou",
+      "email": "nlou@silverstripe.com"
+    }
+  ],
+  "require": {
+    "silverstripe/framework": "^4"
+  },
+  "autoload": {
+    "psr-4": {
+      "SilverStripe\\PaymentDpsHosted\\": "src/"
+    }
+  },
+  "prefer-stable": true,
+  "minimum-stability": "dev"
 }
