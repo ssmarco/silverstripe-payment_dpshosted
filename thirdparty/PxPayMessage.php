@@ -9,6 +9,9 @@
 # These are messages with certain defined elements,  which can be serialized to XML.
 
 #******************************************************************************
+
+use SilverStripe\Core\Convert;
+
 class PxPayMessage
 {
     var $TxnType;

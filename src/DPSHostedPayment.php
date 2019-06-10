@@ -8,6 +8,7 @@ use PxPayRequest;
 use SilverStripe\Control\Director;
 use SilverStripe\ORM\DataObject;
 use SimpleXMLElement;
+use SilverStripe\ORM\DB;
 
 /**
  * Step-by-Step:
