@@ -25,7 +25,7 @@ class DPSHostedPaymentController extends Controller
         }
 
         // @todo more solid page detection (check if published)
-        $page = DataObject::get_one('DPSHostedPaymentPage');
+        $page = DataObject::get_one(DPSHostedPaymentPage::class);
 
         //$pxaccess = new PxAccess($PxAccess_Url, $PxAccess_Userid, $PxAccess_Key, $Mac_Key);
 
@@ -48,11 +48,13 @@ class DPSHostedPaymentController extends Controller
             $paymentID = $rsp->getTxnId();
             $SQL_paymentID = (int)$paymentID;
 
-            $payment = DataObject::get_one('DPSHostedPayment', "`TxnID` = '$SQL_paymentID'");
+            $payment = DPSHostedPayment::get()->filter('TxnID', $SQL_paymentID)->first();
+
             if (!$payment) {
                 // @todo more specific error messages
-                $redirectURL = $page->Link() . '/error';
-                $this->redirect($redirectURL);
+                $redirectURL = $page->Link() . 'error';
+
+                return $this->redirect($redirectURL);
             }
 
             $success = $rsp->getSuccess();
@@ -61,15 +63,17 @@ class DPSHostedPaymentController extends Controller
                 $payment->TxnRef = $rsp->getDpsTxnRef();
                 $payment->Status = "Success";
                 $payment->AuthorizationCode = $rsp->getAuthCode();
-                $redirectURL = $page->Link() . '/success';
+                $redirectURL = $page->Link() . 'success';
 
             } else {
                 $payment->Message = $rsp->getResponseText();
                 $payment->Status = "Failure";
-                $redirectURL = $page->Link() . '/error';
+                $redirectURL = $page->Link() . 'error';
             }
+
             $payment->write();
-            $this->redirect($redirectURL);
+
+            return $this->redirect($redirectURL);
 
         }
     }
