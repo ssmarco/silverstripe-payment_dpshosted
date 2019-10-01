@@ -77,12 +77,4 @@ class DPSHostedPaymentPage extends Page
             DB::get_schema()->alterationMessage('DPSHostedPaymentPage page created', 'created');
         }
     }
-
-    /**
-     * @return string
-     */
-    public function getControllerName()
-    {
-        return DPSHostedPaymentController::class;
-    }
 }
