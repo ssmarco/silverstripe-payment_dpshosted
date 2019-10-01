@@ -3,6 +3,7 @@
 namespace SilverStripe\PaymentDpsHosted;
 
 use PageController;
+use SilverStripe\ORM\FieldType\DBHTMLText;
 
 /**
  * @package payment_dpshosted
@@ -26,18 +27,30 @@ class DPSHostedPaymentPageController extends PageController
         );
     }
 
+    /**
+     * @return DBHTMLText
+     */
     public function success()
     {
+        $content = DBHTMLText::create();
+        $content->setValue($this->SuccessContent);
+
         return $this->customise([
-            'Content' => $this->SuccessContent,
+            'Content' => $content,
             'Form'    => ' ',
         ])->renderWith('Page');
     }
 
+    /**
+     * @return DBHTMLText
+     */
     public function error()
     {
+        $content = DBHTMLText::create();
+        $content->setValue($this->ErrorContent);
+
         return $this->customise([
-            'Content' => $this->ErrorContent,
+            'Content' => $content,
             'Form'    => ' ',
         ])->renderWith('Page');
     }
